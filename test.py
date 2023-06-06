@@ -35,7 +35,7 @@ print(ColorCount)
 
 
 # 3)
-
+print("-------3--------")
 median = sorted(monday)
 print(len(median)/2)
 
@@ -44,10 +44,21 @@ print(median[48])
 # median is GREEN
 
 
-
 # 6)
+print("-------6--------")
+# Count the occurrences of the color red
+redCount = monday.count("RED")
+
+# Calculate the total number of colors
+totalColors = len(monday)
+
+# Calculate the probability of choosing red
+probability_red = redCount / totalColors
+print(f"probability of choosing the color red at random is {probability_red}")
+
 
 # 9)
+print("-------9--------")
 ConcatNum=""
 for i in range(4):
     ab = randint(0, 1)
