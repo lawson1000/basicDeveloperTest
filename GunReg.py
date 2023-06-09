@@ -74,28 +74,31 @@ def user_reg():
                       "KRIG6    ODEN\n")
                 
                 gun_reg_num = input("Enter Gun Registeration Number: ")
-
                 def gun_reg_validation():
-                    pattern='[a-zA-Z]{3}[0-9]{5}[a-zA-Z]{2}$'
-                    match= re.search(pattern,gun_reg_num)
-                    if match:
-                        print("GUN REGISTERATION NUMBER IS VALID!")
+                    while True:
+                        pattern='[a-zA-Z]{3}[0-9]{5}[a-zA-Z]{2}$'
+                        match= re.search(pattern,gun_reg_num)
+                        if match:
+                            print("GUN REGISTERATION NUMBER IS VALID!")
+                            # INSERTING INTO TABLE
 
-                    else:
-                        print("GUN REGISTERATION NUMBER IS INVALID!")
+                            sql = "INSERT INTO REGISTER (NAME,AGE,GUN_TYPE,GUN_REG_NUMBER ) VALUES (%s, %s, %s, %s)"
+                            val = (name,age ,user,gun_reg_num)
+
+                            mycursor.execute(sql, val)
+                            mydb.commit()
+                            print(mycursor.rowcount, "record inserted.")
+                            break
+
+                        else:
+                            print("GUN REGISTERATION NUMBER IS INVALID!")
+                            continue
                 gun_reg_validation()
                 
                 break
             else:
                 print("SELECT A VALID CATEGORY!")
-        # INSERTING INTO TABLE
 
-        sql = "INSERT INTO REGISTER (NAME,AGE,GUN_TYPE,GUN_REG_NUMBER ) VALUES (%s, %s, %s, %s)"
-        val = (name,age ,user,gun_reg_num)
-
-        mycursor.execute(sql, val)
-        mydb.commit()
-        print(mycursor.rowcount, "record inserted.")
 
 
 user_reg()
