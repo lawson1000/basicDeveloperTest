@@ -1,14 +1,14 @@
-# ........FOR THE REGEX(REGULAR EXPRESSION).............................
+# ........FOR THE REGEX(REGULAR EXPRESSION)..........
 
 import re
 import mysql.connector
 
-# ...............................CREATING DATABASE..........................................
+# ...........CREATING DATABASE.....................
 
 mydb = mysql.connector.connect(
-  host="localhost",
-  user="yourusername",
-  password="yourpassword"
+#   host="localhost",
+#   user="yourusername",
+#   password="yourpassword"
 
 )
 
@@ -34,11 +34,31 @@ mycursor.execute("CREATE TABLE REGISTER (NAME VARCHAR(255), AGE INT, GUN_TYPE VA
 
 # mycursor.execute("ALTER TABLE REGISTER
 
-# ............................................INPUTING INTO DATABASE...........................................
+# ...........INPUTING INTO DATABASE....................
+def gun_reg_validation(name,age ,user,gun_reg_num):
+    while True:
+        gun_reg_num = input("Enter Gun Registeration Number: ")
+        pattern='[a-zA-Z]{3}[0-9]{5}[a-zA-Z]{2}$'
+        match= re.search(pattern,gun_reg_num)
+        if match:
+            print("GUN REGISTERATION NUMBER IS VALID!")
+            #............ INSERTING INTO GUNREGISTER DATABASE TABLE REGISTER ...........
 
+            inputtingvalues(name,age ,user,gun_reg_num)
+            break
 
+        else:
+            print("GUN REGISTERATION NUMBER IS INVALID!")
+            continue
 
-# gun_reg_validation()
+def inputtingvalues(name,age ,user,gun_reg_num):
+
+    sql = "INSERT INTO REGISTER (NAME,AGE,GUN_TYPE,GUN_REG_NUMBER ) VALUES (%s, %s, %s, %s)"
+    val = (name,age ,user,gun_reg_num)
+
+    mycursor.execute(sql, val)
+    mydb.commit()
+    print(mycursor.rowcount, "record inserted.")
 
 def user_reg():
     while True:
@@ -72,28 +92,10 @@ def user_reg():
                       "AK117    FFAR15  "
                       "ASVAL    PEACEKEEPERMK2  "
                       "KRIG6    ODEN\n")
-                
-                gun_reg_num = input("Enter Gun Registeration Number: ")
-                def gun_reg_validation():
-                    while True:
-                        pattern='[a-zA-Z]{3}[0-9]{5}[a-zA-Z]{2}$'
-                        match= re.search(pattern,gun_reg_num)
-                        if match:
-                            print("GUN REGISTERATION NUMBER IS VALID!")
-                            # INSERTING INTO TABLE
+                gun_reg_num=""
 
-                            sql = "INSERT INTO REGISTER (NAME,AGE,GUN_TYPE,GUN_REG_NUMBER ) VALUES (%s, %s, %s, %s)"
-                            val = (name,age ,user,gun_reg_num)
-
-                            mycursor.execute(sql, val)
-                            mydb.commit()
-                            print(mycursor.rowcount, "record inserted.")
-                            break
-
-                        else:
-                            print("GUN REGISTERATION NUMBER IS INVALID!")
-                            continue
-                gun_reg_validation()
+                # .........CALLING THE GUN VALIDATION FUNCTION..........
+                gun_reg_validation(name,age ,user,gun_reg_num)
                 
                 break
             else:
