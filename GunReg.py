@@ -82,16 +82,26 @@ def user_reg():
 
         print("WHICH TYPE OF GUN DO YOU WANT "+name.upper()+"\n"
               "{ASSAULT  SNIPER  SMG  PISTOL  MARKSMAN  SHOTGUN  LMG}")
-        guns=["ASSAULT",  "SNIPER" , "SMG" , "PISTOL" , "MARKSMAN", "SHOTGUN", "LMG"]
+        guns=["ASSAULT",  "SNIPER" , "SMG" , "PISTOL" , "SHOTGUN", "LMG"]
         
         while True:
             user=input("ENTER CATEGORY: ")
-            if user.upper==guns[1]:
+            if user.upper==guns[0]:
                 print("\nAK47 KILO141 "
                       "M4   M16 "
                       "AK117    FFAR15  "
                       "ASVAL    PEACEKEEPERMK2  "
                       "KRIG6    ODEN\n")
+            if user.upper==guns[1]:
+                print("\nThe Omega  Voice of Reason Sniper Kin  Fair Looker Sharpshooter Sort   With Intent Night Fall  The Assassin\n "
+            if user.upper==guns[2]:
+                print("\nMSMC   AKS-74U (RUS-79U)   Chicom  HG40    PDW-57  Razorback   Pharo   GKS\n "
+            if user.upper==guns[3]:
+                print("\nALFA Defender  Deer gun   Davis Warner Infallible  Dan Wesson    2mm Kolibri  Barrett\n "
+            if user.upper==guns[4]:
+                print("\nLupus Heirloom Of Giants   Man-O-War   Midnight    Loyal Blaster   Sten\n "
+            if user.upper==guns[5]:
+                print("\n7,62 ITKK 31 VKT   HP 7.62    HP 7.62   AA-52\n "
 
 
                 gun_reg_num=""
