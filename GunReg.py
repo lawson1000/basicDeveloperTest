@@ -106,3 +106,43 @@ def user_reg():
 user_reg()
 
 
+# ......PRINTING OUT VALUES IN MY DATABASE.........
+
+def viewdatabase():
+    while True:
+        gun_reg_num = input("Enter Gun Registeration Number: ")
+        pattern='[a-zA-Z]{3}[0-9]{5}[a-zA-Z]{2}$'
+        match= re.search(pattern,gun_reg_num)
+        if match:
+            print("GUN REGISTERATION NUMBER IS VALID!")
+            mycursor.execute("SELECT * FROM REGISTER")
+
+            myresult = mycursor.fetchall()
+
+            for x in myresult:
+                print(x)
+                
+            break
+
+        else:
+            print("GUN REGISTERATION NUMBER IS INVALID!")
+            continue
+
+
+# viewdatabase()
+
+# .....FINDING WHO GUN IS REGISTERED TO........
+
+
+def findowner():
+    
+    Find = "SELECT * FROM customers WHERE address ='Park Lane 38'"
+
+    mycursor.execute(Find)
+
+    myresult1 = mycursor.fetchall()
+
+    for x in myresult1:
+        print(x)
+
+# findowner()
