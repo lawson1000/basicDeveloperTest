@@ -109,6 +109,16 @@ user_reg()
 # ......PRINTING OUT VALUES IN MY DATABASE.........
 
 def viewdatabase():
+    myresult = mycursor.fetchall()
+    for x in myresult:
+        print(x)
+
+# viewdatabase()
+
+
+# .....FINDING WHO GUN IS REGISTERED TO........
+
+def findowner():
     while True:
         gun_reg_num = input("Enter Gun Registeration Number: ")
         pattern='[a-zA-Z]{3}[0-9]{5}[a-zA-Z]{2}$'
@@ -116,33 +126,36 @@ def viewdatabase():
         if match:
             print("GUN REGISTERATION NUMBER IS VALID!")
             mycursor.execute("SELECT * FROM REGISTER")
+    
+            Find = "SELECT * FROM customers WHERE address ='Park Lane 38'"
 
-            myresult = mycursor.fetchall()
+            mycursor.execute(Find)
 
-            for x in myresult:
+            myresult1 = mycursor.fetchall()
+
+            for x in myresult1:
                 print(x)
-                
+
             break
 
         else:
             print("GUN REGISTERATION NUMBER IS INVALID!")
             continue
+# .......Decision to find............
+
+choice=input("WOULD YOU LIKE TO CHECK GUN REGISTERATION INFO: ")
+
+if choice=='yes':
+    findowner()
+
+else:
+    print('Good Bye')
 
 
-# viewdatabase()
-
-# .....FINDING WHO GUN IS REGISTERED TO........
 
 
-def findowner():
-    
-    Find = "SELECT * FROM customers WHERE address ='Park Lane 38'"
 
-    mycursor.execute(Find)
 
-    myresult1 = mycursor.fetchall()
 
-    for x in myresult1:
-        print(x)
 
-# findowner()
+
