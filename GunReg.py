@@ -85,13 +85,15 @@ def user_reg():
         guns=["ASSAULT",  "SNIPER" , "SMG" , "PISTOL" , "MARKSMAN", "SHOTGUN", "LMG"]
         
         while True:
-            user=input("ENTER CATEGORY: ").upper()
-            if user==guns[1]:
+            user=input("ENTER CATEGORY: ")
+            if user.upper==guns[1]:
                 print("\nAK47 KILO141 "
                       "M4   M16 "
                       "AK117    FFAR15  "
                       "ASVAL    PEACEKEEPERMK2  "
                       "KRIG6    ODEN\n")
+
+
                 gun_reg_num=""
 
                 # .........CALLING THE GUN VALIDATION FUNCTION..........
