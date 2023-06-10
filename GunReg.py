@@ -105,36 +105,36 @@ def user_reg():
                             gun_reg_num=""
                             gun_reg_validation(name,age ,gun_types,gun_reg_num)
                             break
-                        if guns["SNIPER"][gun_type-1]:
-                            gun_types=guns["ASSAULT"][gun_type-1]
+                        elif guns["SNIPER"][gun_type-1]:
+                            gun_types=guns["SNIPER"][gun_type-1]
                             print("GO FOR REGISTERATION!")
                              # .........CALLING THE GUN VALIDATION FUNCTION..........
                             gun_reg_num=""
                             gun_reg_validation(name,age ,gun_types,gun_reg_num)
                             break
-                        if guns["SMG"][gun_type-1]:
-                            gun_types=guns["ASSAULT"][gun_type-1]
+                        elif guns["SMG"][gun_type-1]:
+                            gun_types=guns["SMG"][gun_type-1]
                             print("GO FOR REGISTERATION!")
                              # .........CALLING THE GUN VALIDATION FUNCTION..........
                             gun_reg_num=""
                             gun_reg_validation(name,age ,gun_types,gun_reg_num)
                             break
-                        if guns["PISTOL"][gun_type-1]:
-                            gun_types=guns["ASSAULT"][gun_type-1]
+                        elif guns["PISTOL"][gun_type-1]:
+                            gun_types=guns["PISTOL"][gun_type-1]
                             print("GO FOR REGISTERATION!")
                              # .........CALLING THE GUN VALIDATION FUNCTION..........
                             gun_reg_num=""
                             gun_reg_validation(name,age ,gun_types,gun_reg_num)
                             break
-                        if guns["SHOTGUN"][gun_type-1]:
-                            gun_types=guns["ASSAULT"][gun_type-1]
+                        elif guns["SHOTGUN"][gun_type-1]:
+                            gun_types=guns["SHOTGUN"][gun_type-1]
                             print("GO FOR REGISTERATION!")
                              # .........CALLING THE GUN VALIDATION FUNCTION..........
                             gun_reg_num=""
                             gun_reg_validation(name,age ,gun_types,gun_reg_num)
                             break
-                        if guns["LMG"][gun_type-1]:
-                            gun_types=guns["ASSAULT"][gun_type-1]
+                        elif guns["LMG"][gun_type-1]:
+                            gun_types=guns["LMG"][gun_type-1]
                             print("GO FOR REGISTERATION!")
                              # .........CALLING THE GUN VALIDATION FUNCTION..........
                             gun_reg_num=""
