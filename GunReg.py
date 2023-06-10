@@ -60,6 +60,58 @@ def gun_reg_validation(name,age ,gun_types,gun_reg_num):
 #     mydb.commit()
 #     print(mycursor.rowcount, "record inserted.")
 
+def pickgun(name,age,gun_types,gun_reg_num,guns,gunner):
+     while True:
+            gun_type=int(input("Pick one: "))
+            print(guns[gunner][gun_type-1])             
+            for i in guns["ASSAULT"]:                    
+                if guns["ASSAULT"][gun_type-1]:
+                    gun_types=guns["ASSAULT"][gun_type-1]
+                    print("GO FOR REGISTERATION!")
+                    # .........CALLING THE GUN VALIDATION FUNCTION..........
+                    gun_reg_num=""
+                    gun_reg_validation(name,age ,gun_types,gun_reg_num)
+                    break
+                elif guns["SNIPER"][gun_type-1]:
+                    gun_types=guns["SNIPER"][gun_type-1]
+                    print("GO FOR REGISTERATION!")
+                    # .........CALLING THE GUN VALIDATION FUNCTION..........
+                    gun_reg_num=""
+                    gun_reg_validation(name,age ,gun_types,gun_reg_num)
+                    break
+                elif guns["SMG"][gun_type-1]:
+                    gun_types=guns["SMG"][gun_type-1]
+                    print("GO FOR REGISTERATION!")
+                    # .........CALLING THE GUN VALIDATION FUNCTION..........
+                    gun_reg_num=""
+                    gun_reg_validation(name,age ,gun_types,gun_reg_num)
+                    break
+                elif guns["PISTOL"][gun_type-1]:
+                    gun_types=guns["PISTOL"][gun_type-1]
+                    print("GO FOR REGISTERATION!")
+                    # .........CALLING THE GUN VALIDATION FUNCTION..........
+                    gun_reg_num=""
+                    gun_reg_validation(name,age ,gun_types,gun_reg_num)
+                    break
+                elif guns["SHOTGUN"][gun_type-1]:
+                    gun_types=guns["SHOTGUN"][gun_type-1]
+                    print("GO FOR REGISTERATION!")
+                     # .........CALLING THE GUN VALIDATION FUNCTION..........
+                    gun_reg_num=""
+                    gun_reg_validation(name,age ,gun_types,gun_reg_num)
+                    break
+                elif guns["LMG"][gun_type-1]:
+                    gun_types=guns["LMG"][gun_type-1]
+                    print("GO FOR REGISTERATION!")
+                    # .........CALLING THE GUN VALIDATION FUNCTION..........
+                    gun_reg_num=""
+                    gun_reg_validation(name,age ,gun_types,gun_reg_num)
+                    break
+                else:
+                    print("INVALID CHOICE!")
+                    continue
+            break
+
 def user_reg():
     while True:
         try:
@@ -86,74 +138,76 @@ def user_reg():
                 "PISTOL": ["ALFA Defender", "Deer gun", "Davis Warner Infallible", "Dan Wesson", "2mm Kolibri", "Barrett"],
                 "SHOTGUN": ["Lupus Heirloom Of Giants", "Man-O-War", "Midnight", "Loyal Blaster", "Sten"],
                 "LMG": ["7,62 ITKK 31 VKT ", "HP 7.62 ",  "AA-52"]}
+ 
     
 
         while True:
+            gun_type=0
             print("ASSAULT=1  SNIPER=2  SMG=3  PISTOL=4  SHOTGUN=5  LMG=6")
+            
             user_input = int( input("ENTER CATEGORY FROM THE OPTIONS PROVIDED: "))
+            
             if user_input==1:
+                gunner="ASSAULT"
                 print(guns["ASSAULT"])
+                pickgun(name,age,"",7,guns,gunner)
+
+                choiz=int(input("Would you like to get another gun: (yes=1 / no=2) "))
+                if choiz==1:
+                    continue
+                elif choiz==2:
+                    break
+
             elif user_input==2:
+                gunner="SNIPER"
                 print(guns["SNIPER"])
+
+                pickgun(name,age,"",7,guns,gunner)
+
+                choiz=int(input("Would you like to get another gun: (yes=1 / no=2) "))
+                if choiz==1:
+                    continue
+                elif choiz==2:
+                    break
+
             elif user_input==3:
                 print(guns["SMG"])
+                gunner="SMG"
+                pickgun(name,age,"",7,guns,gunner)
+
+                choiz=int(input("Would you like to get another gun: (yes=1 / no=2) "))
+                if choiz==1:
+                    continue
+                elif choiz==2:
+                    break
+
             elif user_input==4:
                 print(guns["PISTOL"])
-            elif user_input==5:
-                print(guns["SHOTGUN"])
-            elif user_input==6:
-                print(guns["LMG"])
+                gunner="PISTOL"
+                pickgun(name,age,"",7,guns,gunner)
 
-                while True:
-                    gun_type=int(input("Pick one: "))
-                    print(guns["ASSAULT"][gun_type-1])             
-                    for i in guns["ASSAULT"]:
-                        if guns["ASSAULT"][gun_type-1]:
-                            gun_types=guns["ASSAULT"][gun_type-1]
-                            print("GO FOR REGISTERATION!")
-                             # .........CALLING THE GUN VALIDATION FUNCTION..........
-                            gun_reg_num=""
-                            gun_reg_validation(name,age ,gun_types,gun_reg_num)
-                            break
-                        elif guns["SNIPER"][gun_type-1]:
-                            gun_types=guns["SNIPER"][gun_type-1]
-                            print("GO FOR REGISTERATION!")
-                             # .........CALLING THE GUN VALIDATION FUNCTION..........
-                            gun_reg_num=""
-                            gun_reg_validation(name,age ,gun_types,gun_reg_num)
-                            break
-                        elif guns["SMG"][gun_type-1]:
-                            gun_types=guns["SMG"][gun_type-1]
-                            print("GO FOR REGISTERATION!")
-                             # .........CALLING THE GUN VALIDATION FUNCTION..........
-                            gun_reg_num=""
-                            gun_reg_validation(name,age ,gun_types,gun_reg_num)
-                            break
-                        elif guns["PISTOL"][gun_type-1]:
-                            gun_types=guns["PISTOL"][gun_type-1]
-                            print("GO FOR REGISTERATION!")
-                             # .........CALLING THE GUN VALIDATION FUNCTION..........
-                            gun_reg_num=""
-                            gun_reg_validation(name,age ,gun_types,gun_reg_num)
-                            break
-                        elif guns["SHOTGUN"][gun_type-1]:
-                            gun_types=guns["SHOTGUN"][gun_type-1]
-                            print("GO FOR REGISTERATION!")
-                             # .........CALLING THE GUN VALIDATION FUNCTION..........
-                            gun_reg_num=""
-                            gun_reg_validation(name,age ,gun_types,gun_reg_num)
-                            break
-                        elif guns["LMG"][gun_type-1]:
-                            gun_types=guns["LMG"][gun_type-1]
-                            print("GO FOR REGISTERATION!")
-                             # .........CALLING THE GUN VALIDATION FUNCTION..........
-                            gun_reg_num=""
-                            gun_reg_validation(name,age ,gun_types,gun_reg_num)
-                            break
-                        else:
-                            print("INVALID CHOICE!")
-                            continue
+                choiz=int(input("Would you like to get another gun: (yes=1 / no=2) "))
+                if choiz==1:
+                    continue
+                elif choiz==2:
                     break
+
+            elif user_input==5:
+                gunner="SHOTGUN"
+                print(guns["SHOTGUN"])
+                pickgun(name,age,"",7,guns,gunner)
+
+                choiz=int(input("Would you like to get another gun: (yes=1 / no=2) "))
+                if choiz==1:
+                    continue
+                elif choiz==2:
+                    break
+
+            elif user_input==6:
+                gunner="LMG"
+                print(guns["LMG"])
+                pickgun(name,age,"",7,guns,gunner)
+
                 choiz=int(input("Would you like to get another gun: (yes=1 / no=2) "))
                 if choiz==1:
                     continue
