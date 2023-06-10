@@ -89,10 +89,20 @@ def user_reg():
     
 
         while True:
-            print("ASSAULT  SNIPER  SMG  PISTOL  SHOTGUN  LMG")
+            print("ASSAULT=1  SNIPER=2  SMG=3  PISTOL=4  SHOTGUN=5  LMG=6")
             user_input = int( input("ENTER CATEGORY FROM THE OPTIONS PROVIDED: "))
             if user_input==1:
                 print(guns["ASSAULT"])
+            if user_input==2:
+                print(guns["SNIPER"])
+            if user_input==3:
+                print(guns["SMG"])
+            if user_input==4:
+                print(guns["PISTOL"])
+            if user_input==5:
+                print(guns["SHOTGUN"])
+            if user_input==6:
+                print(guns["LMG"])
 
                 while True:
                     gun_type=int(input("Pick one: "))
