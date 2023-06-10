@@ -35,7 +35,7 @@ import re
 # mycursor.execute("ALTER TABLE REGISTER
 
 # ...........INPUTING INTO DATABASE....................
-def gun_reg_validation(name,age ,gun_type,gun_reg_num):
+def gun_reg_validation(name,age ,gun_types,gun_reg_num):
     while True:
         gun_reg_num = input("Enter Gun Registeration Number: ")
         pattern='[a-zA-Z]{3}[0-9]{5}[a-zA-Z]{2}$'
@@ -44,7 +44,7 @@ def gun_reg_validation(name,age ,gun_type,gun_reg_num):
             print("GUN REGISTERATION NUMBER IS VALID!")
             #............ INSERTING INTO GUNREGISTER DATABASE TABLE REGISTER ...........
 
-            # inputtingvalues(name,age ,gun_type,gun_reg_num)
+            # inputtingvalues(name,age ,gun_types,gun_reg_num)
             break
 
         else:
@@ -90,24 +90,65 @@ def user_reg():
 
         while True:
             print("ASSAULT  SNIPER  SMG  PISTOL  SHOTGUN  LMG")
-            user_input = input("ENTER CATEGORY FROM THE OPTIONS PROVIDED " +name.upper()+":")
-            if user_input.casefold in guns:
-                print(guns[user_input.upper()])
+            user_input = int( input("ENTER CATEGORY FROM THE OPTIONS PROVIDED: "))
+            if user_input==1:
+                print(guns["ASSAULT"])
 
-                gun_type=input("Pick one: ")
-                i=""
-                while gun_type.casefold!=i:
-                    for i in guns[user_input]:
-                        if gun_type.casefold==i:
+                while True:
+                    gun_type=int(input("Pick one: "))
+                    print(guns["ASSAULT"][gun_type-1])             
+                    for i in guns["ASSAULT"]:
+                        if guns["ASSAULT"][gun_type-1]:
+                            gun_types=guns["ASSAULT"][gun_type-1]
                             print("GO FOR REGISTERATION!")
                              # .........CALLING THE GUN VALIDATION FUNCTION..........
                             gun_reg_num=""
-                            gun_reg_validation(name,age ,gun_type,gun_reg_num)
+                            gun_reg_validation(name,age ,gun_types,gun_reg_num)
                             break
-                        
+                        if guns["SNIPER"][gun_type-1]:
+                            gun_types=guns["ASSAULT"][gun_type-1]
+                            print("GO FOR REGISTERATION!")
+                             # .........CALLING THE GUN VALIDATION FUNCTION..........
+                            gun_reg_num=""
+                            gun_reg_validation(name,age ,gun_types,gun_reg_num)
+                            break
+                        if guns["SMG"][gun_type-1]:
+                            gun_types=guns["ASSAULT"][gun_type-1]
+                            print("GO FOR REGISTERATION!")
+                             # .........CALLING THE GUN VALIDATION FUNCTION..........
+                            gun_reg_num=""
+                            gun_reg_validation(name,age ,gun_types,gun_reg_num)
+                            break
+                        if guns["PISTOL"][gun_type-1]:
+                            gun_types=guns["ASSAULT"][gun_type-1]
+                            print("GO FOR REGISTERATION!")
+                             # .........CALLING THE GUN VALIDATION FUNCTION..........
+                            gun_reg_num=""
+                            gun_reg_validation(name,age ,gun_types,gun_reg_num)
+                            break
+                        if guns["SHOTGUN"][gun_type-1]:
+                            gun_types=guns["ASSAULT"][gun_type-1]
+                            print("GO FOR REGISTERATION!")
+                             # .........CALLING THE GUN VALIDATION FUNCTION..........
+                            gun_reg_num=""
+                            gun_reg_validation(name,age ,gun_types,gun_reg_num)
+                            break
+                        if guns["LMG"][gun_type-1]:
+                            gun_types=guns["ASSAULT"][gun_type-1]
+                            print("GO FOR REGISTERATION!")
+                             # .........CALLING THE GUN VALIDATION FUNCTION..........
+                            gun_reg_num=""
+                            gun_reg_validation(name,age ,gun_types,gun_reg_num)
+                            break
                         else:
                             print("INVALID CHOICE!")
                             continue
+                    break
+                choiz=int(input("Would you like to get another gun: (yes=1 / no=2) "))
+                if choiz==1:
+                    continue
+                elif choiz==2:
+                    break
             else:
                 print("SELECT A VALID CATEGORY!")
 
