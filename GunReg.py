@@ -37,10 +37,15 @@ def gun_reg_validation(name,age ,gun_types,gun_reg_num):
         if match:
             print("GUN REGISTERATION NUMBER IS VALID!")
             #............ INSERTING INTO GUNREGISTER DATABASE TABLE REGISTER ...........
-
-            inputtingvalues(name,age ,gun_types,gun_reg_num)
-            break
-
+            mycursor.execute("SELECT * FROM REGISTER WHERE GUN_REG_NUMBER = ?", (gun_reg_num,))
+            if mycursor.fetchone() is None:
+                print('Value does not exist in the database.')
+                inputtingvalues(name,age ,gun_types,gun_reg_num)
+                break
+            
+            else:
+                print("CHECK REGISTERATION NUMBER AGAIN!")
+                continue
         else:
             print("GUN REGISTERATION NUMBER IS INVALID!")
             continue
