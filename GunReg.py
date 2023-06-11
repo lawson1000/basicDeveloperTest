@@ -60,8 +60,16 @@ def inputtingvalues(name,age ,gun_type,gun_reg_num):
 
 def pickgun(name,age,gun_types,gun_reg_num,guns,gunner):
      while True:
-            gun_type=int(input("Pick one: "))
-            print(guns[gunner][gun_type-1])             
+            while True:
+                try:
+                    gun_type=int(input("Pick one: "))
+
+                    print(guns[gunner][gun_type-1])
+                    break
+                except IndexError:
+                    print("NOT AN OPTION. TRY AGAIN!")
+                    continue
+
             for i in guns["ASSAULT"]:                    
                 if guns["ASSAULT"][gun_type-1]:
                     gun_types=guns["ASSAULT"][gun_type-1]
