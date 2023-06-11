@@ -1,34 +1,28 @@
 # ........FOR THE REGEX(REGULAR EXPRESSION)..........
 
 import re
-# import mysql.connector
+import sqlite3
 
 # # ...........CREATING DATABASE.....................
 
-# mydb = mysql.connector.connect(
-# #   host="localhost",
-# #   user="yourusername",
-# #   password="yourpassword"
+mydb = sqlite3.connect("GUNREGISTER")
 
-# )
-
-# mycursor = mydb.cursor()
+mycursor = mydb.cursor()
 
 # mycursor.execute("CREATE DATABASE GUNREGISTER")
 
-# mydb = mysql.connector.connect(
-#   host="localhost",
-#   user="yourusername",
-#   password="yourpassword",
-#   database="GUNREGISTER"
-# )
+# mydb = sqlite3.connect(
+#    host="127.0.0.1.3306",
+# #    user="Victor",
+# #    password="macdammy555",
+#    database="GUNREGISTER"
+#  )
 
 # mycursor.execute("SHOW TABLES")
+# for x in mycursor:
+#     print(x)
 
-# # for x in mycursor:
-# #     print(x)
-
-# mycursor.execute("CREATE TABLE REGISTER (NAME VARCHAR(255), AGE INT, GUN_TYPE VARCHAR(255), GUN_REG_NUMBER INT PRIMARY KEY)")
+mycursor.execute("CREATE TABLE IF NOT EXISTS REGISTER (NAME VARCHAR(255), AGE INT, GUN_TYPE VARCHAR(255), GUN_REG_NUMBER INT PRIMARY KEY)")
 
 #...................TO ALTER TABLE.................
 
@@ -44,21 +38,20 @@ def gun_reg_validation(name,age ,gun_types,gun_reg_num):
             print("GUN REGISTERATION NUMBER IS VALID!")
             #............ INSERTING INTO GUNREGISTER DATABASE TABLE REGISTER ...........
 
-            # inputtingvalues(name,age ,gun_types,gun_reg_num)
+            inputtingvalues(name,age ,gun_types,gun_reg_num)
             break
 
         else:
             print("GUN REGISTERATION NUMBER IS INVALID!")
             continue
 
-# def inputtingvalues(name,age ,gun_type,gun_reg_num):
-
-#     sql = "INSERT INTO REGISTER (NAME,AGE,GUN_TYPE,GUN_REG_NUMBER ) VALUES (%s, %s, %s, %s)"
-#     val = (name,age ,gun_type,gun_reg_num)
-
-#     mycursor.execute(sql, val)
-#     mydb.commit()
-#     print(mycursor.rowcount, "record inserted.")
+def inputtingvalues(name,age ,gun_type,gun_reg_num):
+    sql = "INSERT INTO REGISTER (NAME,AGE,GUN_TYPE,GUN_REG_NUMBER ) VALUES (?, ?, ?, ?)"
+    val = (name,age ,gun_type,gun_reg_num)
+    
+    mycursor.execute(sql, val)
+    mydb.commit()
+    print(mycursor.rowcount, "record inserted.")
 
 def pickgun(name,age,gun_types,gun_reg_num,guns,gunner):
      while True:
@@ -223,54 +216,43 @@ user_reg()
 
 # ......PRINTING OUT VALUES IN MY DATABASE.........
 
-# def viewdatabase():
-#     myresult = mycursor.fetchall()
-#     for x in myresult:
-#         print(x)
+def viewdatabase():
+    myresult = mycursor.fetchall()
+    for x in myresult:
+        print(x)
 
-# # viewdatabase()
-
-
-# # .....FINDING WHO GUN IS REGISTERED TO........
-
-# def findowner():
-#     while True:
-#         gun_reg_num = input("Enter Gun Registeration Number: ")
-#         pattern='[a-zA-Z]{3}[0-9]{5}[a-zA-Z]{2}$'
-#         match= re.search(pattern,gun_reg_num)
-#         if match:
-#             print("GUN REGISTERATION NUMBER IS VALID!")
-#             mycursor.execute("SELECT * FROM REGISTER")
-    
-#             Find = "SELECT * FROM customers WHERE address ='Park Lane 38'"
-
-#             mycursor.execute(Find)
-
-#             myresult1 = mycursor.fetchall()
-
-#             for x in myresult1:
-#                 print(x)
-
-#             break
-
-#         else:
-#             print("GUN REGISTERATION NUMBER IS INVALID!")
-#             continue
-# # .......Decision to find............
-
-# choice=input("WOULD YOU LIKE TO CHECK GUN REGISTERATION INFO: ")
-
-# if choice=='yes':
-#     findowner()
-
-# else:
-#     print('Good Bye')
+viewdatabase()
 
 
+ # .....FINDING WHO GUN IS REGISTERED TO........
 
+def findowner():
+    while True:
+        gun_reg_num = input("Enter Gun Registeration Number: ")
+        pattern='[a-zA-Z]{3}[0-9]{5}[a-zA-Z]{2}$'
+        match= re.search(pattern,gun_reg_num)
+        if match:
+            print("GUN REGISTERATION NUMBER IS VALID!")
+            mycursor.execute("SELECT * FROM REGISTER")
 
+            mycursor.execute("SELECT * FROM REGISTER WHERE  GUN_REG_NUMBER = ?", (gun_reg_num,))
 
+            myresult1 = mycursor.fetchall()
 
+            for x in myresult1:
+                print(x)
 
+            break
 
+        else:
+            print("GUN REGISTERATION NUMBER IS INVALID!")
+            continue
+# .......Decision to find............
 
+choice=input("WOULD YOU LIKE TO CHECK GUN REGISTERATION INFO: ")
+
+if choice=='yes':
+    findowner()
+
+else:
+    print('Good Bye')
