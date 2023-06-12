@@ -78,10 +78,10 @@ def gundeletion():
             gone=True
             mycursor.execute("DELETE FROM REGISTER")
             print()
-            print(mycursor.rowcount," Deleted")
             mycursor.execute("SELECT * FROM REGISTER")
             print(mycursor.fetchall())
             mydb.commit()
+            print(mycursor.rowcount," Deleted")
 
             break
         elif choizes==2:
@@ -103,6 +103,7 @@ def gundeletion():
                         print("ID EXISTING IN DATABASE!!\n")
                         mycursor.execute("DELETE FROM REGISTER WHERE GUN_REG_NUMBER = ?", (gun_reg_num,))
                         mydb.commit()
+                        print(mycursor.rowcount," Deleted")
                         
                         viewdatabase()
                         break
