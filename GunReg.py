@@ -78,7 +78,7 @@ def gundeletion():
             gone=True
             mycursor.execute("DELETE FROM REGISTER")
             print()
-            print("After deleting all rows")
+            print(mycursor.rowcount," Deleted")
             mycursor.execute("SELECT * FROM REGISTER")
             print(mycursor.fetchall())
             mydb.commit()
