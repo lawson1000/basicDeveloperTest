@@ -12,9 +12,7 @@ mycursor = mydb.cursor()
 mycursor.execute("CREATE TABLE IF NOT EXISTS REGISTER (NAME VARCHAR(255), AGE INT, GUN_TYPE VARCHAR(255), GUN_REG_NUMBER INT PRIMARY KEY)")
 
 
-#...................TO ALTER TABLE OR DROP.................
-
-# mycursor.execute("DROP TABLE IF EXISTS REGISTER")
+#...................TO ALTER TABLE.................
 
 # mycursor.execute("ALTER TABLE REGISTER
 
@@ -73,32 +71,52 @@ def viewing(age):
 # ...............REMOVING GUNS.................
 
 def gundeletion():
-    print("WHICH GUN WOULD YOU LIKE TO REMOVE")
     while True:
-        gun_reg_num = input("Enter Gun Registeration Number: ")
-        pattern='[a-zA-Z]{3}[0-9]{5}[a-zA-Z]{2}$'
-        match= re.search(pattern,gun_reg_num)
-        if match:
-            print("GUN REGISTERATION NUMBER IS VALID!")
+        choizes=int(input("Would you like to format database: (yes=1 / no=2) "))
+        if choizes==1:
+            gone=True
+            mycursor.execute("DELETE FROM REGISTER")
+            print()
+            print("After deleting all rows")
+            mycursor.execute("SELECT * FROM REGISTER")
+            print(mycursor.fetchall())
+            mydb.commit()
 
-            #............ DELETING FROM GUNREGISTER DATABASE TABLE REGISTER ...........
-            mycursor.execute("SELECT * FROM REGISTER WHERE GUN_REG_NUMBER = ?", (gun_reg_num,))
-            if mycursor.fetchone() is None:
-                print('ID does not exist in the database.')
-                continue
-            
-            else:
-                print("ID EXISTING IN DATABASE!!\n")
-                mycursor.execute("DELETE FROM REGISTER WHERE GUN_REG_NUMBER = ?", (gun_reg_num,)) 
-                mydb.commit()
-                
-                viewdatabase()
-                
-                break
+            break
+        elif choizes==2:
+            print("WHICH GUN WOULD YOU LIKE TO REMOVE")
+            while True:
+                gun_reg_num = input("Enter Gun Registeration Number: ")
+                pattern='[a-zA-Z]{3}[0-9]{5}[a-zA-Z]{2}$'
+                match= re.search(pattern,gun_reg_num)
+                if match:
+                    print("GUN REGISTERATION NUMBER IS VALID!")
 
+                    #............ DELETING FROM GUNREGISTER DATABASE TABLE REGISTER ...........
+                    mycursor.execute("SELECT * FROM REGISTER WHERE GUN_REG_NUMBER = ?", (gun_reg_num,))
+                    if mycursor.fetchone() is None:
+                        print('ID does not exist in the database.')
+                        continue
+                    
+                    else:
+                        print("ID EXISTING IN DATABASE!!\n")
+                        mycursor.execute("DELETE FROM REGISTER WHERE GUN_REG_NUMBER = ?", (gun_reg_num,))
+                        mydb.commit()
+                        
+                        viewdatabase()
+                        break
+                    
+                else:
+                    print("GUN REGISTERATION NUMBER IS INVALID!")
+                    continue              
         else:
-            print("GUN REGISTERATION NUMBER IS INVALID!")
+            print("invalid option!")
             continue
+        break
+
+    
+
+        
 
 
  # .....FINDING WHO GUN IS REGISTERED TO........
@@ -121,7 +139,7 @@ def findowner():
             break
 
         else:
-            print("GUN REGISTERATION NUMBER IS INVALID!")
+            print("GUN REGISTERATION NUMBER IS INVALID! OR DOES NOT EXIST IN DATABASE")
             continue
 
 # .......Decision to find and delete............
