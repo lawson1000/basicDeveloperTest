@@ -19,6 +19,7 @@ mycursor.execute("CREATE TABLE IF NOT EXISTS REGISTER (NAME VARCHAR(255), AGE IN
 # ...........INPUTING INTO DATABASE....................
 def gun_reg_validation(name,age ,gun_types,gun_reg_num):
     while True:
+        print("Gun must follow format example: abc12345qw")
         gun_reg_num = input("Enter Gun Registeration Number: ")
         pattern='[a-zA-Z]{3}[0-9]{5}[a-zA-Z]{2}$'
         match= re.search(pattern,gun_reg_num)
@@ -180,11 +181,25 @@ def decision(age):
 
 
 
-def pickgun(name,age,gun_types,gun_reg_num,guns,gunner):
+def pickgun(name,age,gun_types,gun_reg_num,guns,gunner,gunt):
     while True:
             while True:
                 try:
+                    if gunt==1:
+                        print("Pick one from 1-",len(guns['ASSAULT']),"\n")
+                    elif gunt==2:
+                        print("Pick one from 1-",len(guns["SNIPER"]),"\n")
+                    elif gunt==3:
+                        print("Pick one from 1-",len(guns["SMG"]),"\n")
+                    elif gunt==4:
+                        print("Pick one from 1-",len(guns["PISTOL"]),"\n")
+                    elif gunt==5:
+                        print("Pick one from 1-",len(guns["SHOTGUN"]),"\n")
+                    elif gunt==6:
+                        print("Pick one from 1-",len(guns["LMG"]),"\n")
+                
                     gun_type=int(input("Pick one: "))
+
 
                     print(guns[gunner][gun_type-1])
                     break
@@ -288,8 +303,8 @@ def user_reg():
 
             if user_input==1:
                 gunner="ASSAULT"
-                print(guns["ASSAULT"])
-                pickgun(name,age,"",7,guns,gunner)
+                print(guns["ASSAULT"]) 
+                pickgun(name,age,"",7,guns,gunner,1)
 
                 while True:
                     choiz=int(input("Would you like to get another gun: (yes=1 / no=2) "))
@@ -305,7 +320,7 @@ def user_reg():
                 gunner="SNIPER"
                 print(guns["SNIPER"])
 
-                pickgun(name,age,"",7,guns,gunner)
+                pickgun(name,age,"",7,guns,gunner,2)
 
                 while True:
                     choiz=int(input("Would you like to get another gun: (yes=1 / no=2) "))
@@ -320,7 +335,7 @@ def user_reg():
             elif user_input==3:
                 print(guns["SMG"])
                 gunner="SMG"
-                pickgun(name,age,"",7,guns,gunner)
+                pickgun(name,age,"",7,guns,gunner,3)
 
                 while True:
                     choiz=int(input("Would you like to get another gun: (yes=1 / no=2) "))
@@ -335,7 +350,7 @@ def user_reg():
             elif user_input==4:
                 print(guns["PISTOL"])
                 gunner="PISTOL"
-                pickgun(name,age,"",7,guns,gunner)
+                pickgun(name,age,"",7,guns,gunner,4)
 
                 while True:
                     choiz=int(input("Would you like to get another gun: (yes=1 / no=2) "))
@@ -350,7 +365,7 @@ def user_reg():
             elif user_input==5:
                 gunner="SHOTGUN"
                 print(guns["SHOTGUN"])
-                pickgun(name,age,"",7,guns,gunner)
+                pickgun(name,age,"",7,guns,gunner,5)
 
                 while True:
                     choiz=int(input("Would you like to get another gun: (yes=1 / no=2) "))
@@ -365,7 +380,7 @@ def user_reg():
             elif user_input==6:
                 gunner="LMG"
                 print(guns["LMG"])
-                pickgun(name,age,"",7,guns,gunner)
+                pickgun(name,age,"",7,guns,gunner,6)
 
                 while True:
                     choiz=int(input("Would you like to get another gun: (yes=1 / no=2) "))
