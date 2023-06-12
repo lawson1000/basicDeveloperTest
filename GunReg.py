@@ -12,7 +12,9 @@ mycursor = mydb.cursor()
 mycursor.execute("CREATE TABLE IF NOT EXISTS REGISTER (NAME VARCHAR(255), AGE INT, GUN_TYPE VARCHAR(255), GUN_REG_NUMBER INT PRIMARY KEY)")
 
 
-#...................TO ALTER TABLE.................
+#...................TO ALTER TABLE OR DROP.................
+
+# mycursor.execute("DROP TABLE IF EXISTS REGISTER")
 
 # mycursor.execute("ALTER TABLE REGISTER
 
