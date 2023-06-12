@@ -89,10 +89,9 @@ def gundeletion():
             
             else:
                 print("ID EXISTING IN DATABASE!!\n")
-                mycursor.execute("DELETE FROM REGISTER WHERE GUN_REG_NUMBER = ?", (gun_reg_num,))
-                records = mycursor.fetchall()
-                for x in records:
-                    print(x)
+                mycursor.execute("DELETE FROM REGISTER WHERE GUN_REG_NUMBER = ?", (gun_reg_num,)) 
+                mydb.commit()
+                
                 viewdatabase()
                 
                 break
