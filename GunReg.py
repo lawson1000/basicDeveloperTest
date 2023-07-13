@@ -173,40 +173,47 @@ def findowner():
 # .......Decision to find and delete............
 def decision():
     while True:
-        print("\nADMIN LOGIN:")
-        print('ADMIN NAME AND PASSOWRD REQUIRED')
-        
-        inpu=input('ENTER NAME: ').casefold()
-        pas =input('ENTER PASSWORD: ')
-        mycursor.execute("SELECT * FROM REGISTERADMIN WHERE NAME = ?  AND PASSCODE = ? ", (inpu,pas))
-        if mycursor.fetchone() is None:
-            print('USER DOES NOT EXIST!.TRY AGAIN\n')
-            continue
+        print("\nADMIN SECTION")
+        inpur = input('CONTINUE | <-BACK:').casefold()
+        if inpur=="CONTINUE":
+            print('ADMIN NAME AND PASSOWRD REQUIRED')
 
-        else:
-            print("WELCOME",inpu.upper())
-            while True:
-                try:
-                    chooz=str(input("WOULD YOU LIKE TO REMOVE FROM DATABASE OR CHECK INFO IN DATABASE? (remove / check / viewdb / back) :")).casefold()
-                    if chooz=='remove':  
-                        gundeletion()
-                    
-                    elif chooz=='check':   
-                        findowner()
-                    
-                    elif chooz=='back':   
-                        signin()
-                        break
+            inpu=input('ENTER NAME: ').casefold()
+            pas =input('ENTER PASSWORD: ')
+            mycursor.execute("SELECT * FROM REGISTERADMIN WHERE NAME = ?  AND PASSCODE = ? ", (inpu,pas))
+            if mycursor.fetchone() is None:
+                print('USER DOES NOT EXIST!.TRY AGAIN\n')
+                continue
 
-                    elif chooz=='viewdb':   
-                        viewing()
+            else:
+                print("WELCOME",inpu.upper())
+                while True:
+                    try:
+                        chooz=str(input("WOULD YOU LIKE TO REMOVE FROM DATABASE OR CHECK INFO IN DATABASE? (remove / check / viewdb / back) :")).casefold()
+                        if chooz=='remove':
+                            gundeletion()
 
-                    else:
+                        elif chooz=='check':
+                            findowner()
+
+                        elif chooz=='back':
+                            signin()
+                            break
+
+                        elif chooz=='viewdb':
+                            viewing()
+
+                        else:
+                            print("INVALID OPTION")
+                            continue
+                    except ValueError:
                         print("INVALID OPTION")
-                        continue     
-                except ValueError:
-                    print("INVALID OPTION")
-                    continue
+                        continue
+        elif inpur=="back":
+            signin()
+            break
+        else:
+            continue
 
 
 
