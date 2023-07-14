@@ -173,7 +173,7 @@ def findowner():
 # .......Decision to find and delete............
 def decision():
     while True:
-        print("\nADMIN SECTION")
+        print("\nWELCOME TO THE ADMIN SECTION")
         inpur = input('CONTINUE | <-BACK:').casefold()
         if inpur=="continue":
             while True:
@@ -315,6 +315,7 @@ def pickgun(name,age,gun_types,gun_reg_num,guns,gunner,gunt):
 # ............user section.................
 
 def user_reg():
+    print("WELCOME TO USER SECTION")
     while True:
         while True:
             try:
@@ -491,6 +492,7 @@ def user_reg():
 #.............admin or user selection section.................
 def signin():
     while True:
+        print("MAIN MENU")
         use=str(input("ARE YOU A USER OR AN ADMIN? (ADMIN / USER / EXIT) " )).casefold()
         if use=='admin':
             # viewing()
