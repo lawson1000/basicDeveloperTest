@@ -175,15 +175,30 @@ def decision():
     while True:
         print("\nADMIN SECTION")
         inpur = input('CONTINUE | <-BACK:').casefold()
-        if inpur=="CONTINUE":
-            print('ADMIN NAME AND PASSOWRD REQUIRED')
+        if inpur=="continue":
+            while True:
+                print('ADMIN NAME AND PASSOWRD REQUIRED')
+                inpu=input('ENTER NAME: ').casefold()
+                pas =input('ENTER PASSWORD: ')
+                mycursor.execute("SELECT * FROM REGISTERADMIN WHERE NAME = ?  AND PASSCODE = ? ", (inpu,pas))
+                if mycursor.fetchone() is None:
+                    print('USER DOES NOT EXIST!.\tRETRY | <-GO BACK\n')
+                    while True:
+                        inpurt = input('RETRY | <-BACK TO MAIN MENU:').casefold()
+                        if inpurt=="retry":
+                            break
+                        elif inpurt=="back":
+                            break
+                        else:
+                            print("INVALID INPUT!!")
+                        continue
 
-            inpu=input('ENTER NAME: ').casefold()
-            pas =input('ENTER PASSWORD: ')
-            mycursor.execute("SELECT * FROM REGISTERADMIN WHERE NAME = ?  AND PASSCODE = ? ", (inpu,pas))
-            if mycursor.fetchone() is None:
-                print('USER DOES NOT EXIST!.TRY AGAIN\n')
-                continue
+                    if inpurt == "retry":
+                        continue
+                    elif inpurt == "back":
+                        signin()
+                        break
+                break
 
             else:
                 print("WELCOME",inpu.upper())
@@ -213,7 +228,9 @@ def decision():
             signin()
             break
         else:
+            print("INVALID INPUT!!")
             continue
+        break
 
 
 
