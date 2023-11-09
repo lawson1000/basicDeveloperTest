@@ -10,7 +10,7 @@ mycursor = mydb.cursor()
 mycursor.execute(
     "CREATE TABLE IF NOT EXISTS REGISTER (NAME VARCHAR(255), AGE INT, GUN_TYPE VARCHAR(255), GUN_REG_NUMBER INT PRIMARY KEY)")
 mycursor.execute("CREATE TABLE IF NOT EXISTS REGISTERADMIN (NAME VARCHAR(255), AGE INT, PASSCODE INT )")
-9
+
 # INPUTING INTO ADMIN DATABASE
 def admintable():
     name = str(input("ENTER ADMIN NAME: ")).upper()
@@ -39,7 +39,7 @@ def admintable():
 # ...........INPUTING INTO DATABASE....................
 def gun_reg_validation(name, age, gun_types, gun_reg_num):
     while True:
-        print("Gun must follow format example: abc12345qw")
+        print("Registration_Number must follow format example: abc12345qw")
         gun_reg_num = input("Enter Gun Registeration Number: ").upper()
         pattern = '[a-zA-Z]{3}[0-9]{5}[a-zA-Z]{2}$'
         match = re.search(pattern, gun_reg_num)
@@ -80,6 +80,8 @@ def filepath():
 
 def ViewDB():
     mycursor.execute("SELECT * FROM REGISTER")
+    # mycursor.execute("SELECT * FROM REGISTERADMIN")
+
 
     myresult = mycursor.fetchall()
     for x in myresult:
@@ -87,7 +89,7 @@ def ViewDB():
 
 
 def viewing():
-    filepath()
+    # filepath()
     ViewDB()
 
 
@@ -175,7 +177,7 @@ def decision():
                 pas = input('ENTER PASSWORD: ')
                 mycursor.execute("SELECT * FROM REGISTERADMIN WHERE NAME = ?  AND PASSCODE = ? ", (inpu, pas))
                 if mycursor.fetchone() is None:
-                    print('USER DOES NOT EXIST!.\tRETRY | <-GO BACK\n')
+                    print('USER DOES NOT EXIST!.\n')
                     while True:
                         inpurt = input('RETRY | <-BACK TO MAIN MENU:').casefold()
                         if inpurt == "retry":
@@ -191,33 +193,32 @@ def decision():
                     elif inpurt == "back":
                         signin()
                         break
-                break
 
-            else:
-                print("WELCOME", inpu.upper())
-                while True:
-                    try:
-                        chooz = str(input(
-                            "WOULD YOU LIKE TO REMOVE FROM DATABASE OR CHECK INFO IN DATABASE? (remove / check / viewdb / back) :")).casefold()
-                        if chooz == 'remove':
-                            gundeletion()
+                else:
+                    print("WELCOME", inpu.upper())
+                    while True:
+                        try:
+                            chooz = str(input(
+                                "WOULD YOU LIKE TO REMOVE FROM DATABASE OR CHECK INFO IN DATABASE? (remove / check / viewdb / back) :")).casefold()
+                            if chooz == 'remove':
+                                gundeletion()
 
-                        elif chooz == 'check':
-                            findowner()
+                            elif chooz == 'check':
+                                findowner()
 
-                        elif chooz == 'back':
-                            signin()
-                            break
+                            elif chooz == 'back':
+                                signin()
+                                break
 
-                        elif chooz == 'viewdb':
-                            viewing()
+                            elif chooz == 'viewdb':
+                                viewing()
 
-                        else:
+                            else:
+                                print("INVALID OPTION")
+                                continue
+                        except ValueError:
                             print("INVALID OPTION")
                             continue
-                    except ValueError:
-                        print("INVALID OPTION")
-                        continue
         elif inpur == "back":
             signin()
             break
@@ -498,8 +499,6 @@ def signin():
         else:
             print("INVALID OPTION!")
             continue
-
-
 signin()
 
-import tkinter
+# import tkinter
